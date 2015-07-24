@@ -1,7 +1,7 @@
-# Vagrant development box for [FamilyGenTree/familygentree](https://github.com/FamilyGenTree/familygentree)
+# Vagrant development box for [WorkingDevelopers/code-snippets](https://github.com/WorkingDevelopers/code-snippets)
 
-Don't use this repo directly. It is meant to work as sub-module in FamilyGenTree/familygentree under `tools/vagrant`.
-Please checkout FamilyGenTree/familygentree and ran there the VAGRANT.sh.
+Don't use this repo directly. It is meant to work as sub-module in WorkingDevelopers/code-snippets under `tools/vagrant`.
+Please checkout WorkingDevelopers/code-snippets and ran there the VAGRANT.sh.
 
 # Vagrant - Usage
 
@@ -26,31 +26,21 @@ This uses [Vagrant](http://vagrantup.com) and [VirtualBox](http://virtualbox.org
 
 * run `sudo tools/vagrant/linux/configure-vagrant-host.sh` to set up needed hosts-ip resolution automatically in `/etc/hosts` or
  * edit `/etc/hosts` by hand add following entries
-  - `192.168.56.181    webtrees.nginx.dev www.webtrees.nginx.dev`
-  - `192.168.56.182    webtrees.apache2.dev www.webtrees.apache2.dev`
+  - `192.168.56.170    code-snippets.apache2.dev www.code-snippets.apache2.dev`
+  - `192.168.56.171    code-snippets.nginx.dev www.code-snippets.nginx.dev`
 
 * You can now login via ssh running `vagrant ssh`
 * The website is reachable via
- * apache2 based: `webtrees.apache2.dev`
- * nginx based  : `webtrees.nginx.dev`
+ * apache2 based: `code-snippets.apache2.dev`
+ * nginx based  : `code-snippets.nginx.dev`
  
-### Set up webtrees
+### Set up
 
-* call http://fgg.apache2.dev/setup.php in your browser
-* On page Connection to database server
- * Database user account: `fgg_dbu`
- * Database password: `fgg`
-* Next page 'Database and table names'
- * Database name: `fgg_dev`
- * Table prefix: `fgg_`
-* Next page 'System settings'
- * Your name: `Administrator`
- * Login ID: `admin`
- * Password (you can choose): `fggfgg`
- * Email address: `admin@fgg.apache2.dev`
-* Now you can login with
- * Username: `admin`
- * Password: `fggfgg`
+* call http://code-snippets.apache2.dev/setup.php in your browser
+* database server
+ * Database user account: `cs_dbu`
+ * Database password: `cs`
+ * Database name: `cs_dev`
 
 ### Trouble shooting
 

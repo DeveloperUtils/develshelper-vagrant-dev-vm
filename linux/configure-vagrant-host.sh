@@ -8,9 +8,9 @@ SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
 
 ### settings
 
-PROJECT_NAME=fgt
+PROJECT_NAME='code-snippets'
 declare -A VM_IPS
-VM_IPS[apache2]='192.168.56.202'
+VM_IPS[apache2]='192.168.56.170'
 VM_IPS[nginx]='192.168.56.201'
 
 function setup-hosts() {
