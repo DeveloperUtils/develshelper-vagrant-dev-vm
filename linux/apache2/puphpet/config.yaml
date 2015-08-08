@@ -10,7 +10,7 @@ vagrantfile:
         network:
             private_network: 192.168.56.170
             forwarded_port:
-                vflnp_7l9g97loj1xp:
+                vflnp_13goqlzsdxiu:
                     host: '7619'
                     guest: '22'
         post_up_message: ''
@@ -33,7 +33,7 @@ vagrantfile:
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
                     - '--parser future'
         synced_folder:
-            vflsf_ueswkuhcfbrg:
+            vflsf_s9cb1hnh80ik:
                 source: ./
                 target: /var/www/code-snippets
                 sync_type: nfs
@@ -82,11 +82,8 @@ users_groups:
 locale:
     install: '1'
     settings:
-        default_locale: 'en_US.UTF-8 UTF-8'
-        locales:
-            - 'en_GB.UTF-8 UTF-8'
-            - 'en_US.UTF-8 UTF-8'
-            - 'de_DE.UTF-8 UTF-8'
+        default_locale: ''
+        locales: {  }
 firewall:
     install: '1'
     rules: {  }
@@ -101,7 +98,7 @@ nginx:
         proxy_buffers: '4 256k'
     upstreams: {  }
     vhosts:
-        nxv_ug5yiio37wsk:
+        nxv_8molnevoyzk8:
             server_name: fgg.nginx.dev
             server_aliases:
                 - www.fgg.nginx.dev
@@ -120,7 +117,7 @@ nginx:
             ssl_protocols: ''
             ssl_ciphers: ''
             locations:
-                nxvl_6qjoywm0x9bz:
+                nxvl_0o8hjzj5mai0:
                     location: /
                     autoindex: 'off'
                     try_files:
@@ -130,7 +127,7 @@ nginx:
                     fastcgi: ''
                     fastcgi_index: ''
                     fastcgi_split_path: ''
-                nxvl_966avytfvmwk:
+                nxvl_lphviam5sm4j:
                     location: '~ \.php$'
                     autoindex: 'off'
                     try_files:
@@ -158,11 +155,11 @@ apache:
         - proxy_fcgi
         - rewrite
     vhosts:
-        av_runefb4ge5sn:
+        av_29rgglqt6gc1:
             servername: code-snippets.apache2.dev
             serveraliases:
                 - www.code-snippets.apache2.dev
-            docroot: /var/www/code-snippets
+            docroot: /var/www/code-snippets/web
             port: '80'
             setenv:
                 - 'APP_ENV dev'
@@ -175,7 +172,7 @@ apache:
             ssl_protocol: ''
             ssl_cipher: ''
             directories:
-                avd_d03efjac8y5m:
+                avd_7mgo1kby65c0:
                     path: /var/www/code-snippets
                     options:
                         - Indexes
@@ -187,7 +184,7 @@ apache:
                         - 'all granted'
                     custom_fragment: ''
                     files_match:
-                        avdfm_50r9p9lu9lhz:
+                        avdfm_t0fe3iwsmjuy:
                             path: \.php$
                             sethandler: 'proxy:fcgi://127.0.0.1:9000'
                             custom_fragment: ''
@@ -196,7 +193,7 @@ apache:
 php:
     install: '1'
     settings:
-        version: '54'
+        version: '55'
     modules:
         php:
             - cli
@@ -217,7 +214,19 @@ php:
         max_execution_time: '3000'
     fpm_ini:
         error_log: /var/log/php-fpm.log
-    fpm_pools: {  }
+    fpm_pools:
+        phpfp_5i2eo1tmc58q:
+            ini:
+                listen: '127.0.0.1:9000'
+                security.limit_extensions: .php
+                user: www-user
+                group: www-data
+                pm: dynamic
+                pm.max_children: '5'
+                pm.start_servers: '1'
+                pm.min_spare_servers: '1'
+                pm.max_spare_servers: '3'
+                prefix: snippets
     composer: '1'
     composer_home: ''
 xdebug:
@@ -257,7 +266,7 @@ drush:
 ruby:
     install: '1'
     versions:
-        rv_7tcha6gqnzf8:
+        rv_qkfyd1mq5t1r:
             default: '1'
             bundler: '1'
             version: 1.9.3
@@ -287,26 +296,26 @@ mysql:
         override_options: {  }
     adminer: 0
     users:
-        mysqlnu_aj6t2oszlrko:
+        mysqlnu_n7spjdy2e5dd:
             name: cs_dbu
             password: cs
-        mysqlnu_z4ixztbolrcz:
+        mysqlnu_lhaqay2ukr33:
             name: testdb
             password: testdb
     databases:
-        mysqlnd_hc17vd6h065k:
+        mysqlnd_1abenah650gc:
             name: cs_dev
             sql: ''
-        mysqlnd_3784x5dondyy:
+        mysqlnd_aoe7flqmkii9:
             name: testdb
             sql: ''
     grants:
-        mysqlng_icw70vb4t4p6:
+        mysqlng_lxq595l712tu:
             user: cs_dbu
             table: 'cs_dev.*'
             privileges:
                 - ALL
-        mysqlng_yd6miq77ttq6:
+        mysqlng_c4yhiic0pg3l:
             user: testdb
             table: 'testdb.*'
             privileges:
@@ -319,15 +328,15 @@ mariadb:
         override_options: {  }
     adminer: 0
     users:
-        mariadbnu_n05431o37k5h:
+        mariadbnu_nj2e4pr3wzol:
             name: dbuser
             password: '123'
     databases:
-        mariadbnd_pd45c1b2wn11:
+        mariadbnd_se6592avzrnq:
             name: dbname
             sql: ''
     grants:
-        mariadbng_3hyqq0wgmut2:
+        mariadbng_sy6g5k3ytzva:
             user: dbuser
             table: '*.*'
             privileges:
