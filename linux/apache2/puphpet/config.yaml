@@ -10,7 +10,7 @@ vagrantfile:
         network:
             private_network: 192.168.56.170
             forwarded_port:
-                vflnp_13goqlzsdxiu:
+                vflnp_vfy8t1l9urhv:
                     host: '7619'
                     guest: '22'
         post_up_message: ''
@@ -33,7 +33,7 @@ vagrantfile:
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
                     - '--parser future'
         synced_folder:
-            vflsf_s9cb1hnh80ik:
+            vflsf_bbau22k4nf09:
                 source: ./
                 target: /var/www/code-snippets
                 sync_type: nfs
@@ -98,7 +98,7 @@ nginx:
         proxy_buffers: '4 256k'
     upstreams: {  }
     vhosts:
-        nxv_8molnevoyzk8:
+        nxv_vcptez2sw8bs:
             server_name: fgg.nginx.dev
             server_aliases:
                 - www.fgg.nginx.dev
@@ -117,7 +117,7 @@ nginx:
             ssl_protocols: ''
             ssl_ciphers: ''
             locations:
-                nxvl_0o8hjzj5mai0:
+                nxvl_suy16kfhdf4w:
                     location: /
                     autoindex: 'off'
                     try_files:
@@ -127,7 +127,7 @@ nginx:
                     fastcgi: ''
                     fastcgi_index: ''
                     fastcgi_split_path: ''
-                nxvl_lphviam5sm4j:
+                nxvl_bevldyypqhss:
                     location: '~ \.php$'
                     autoindex: 'off'
                     try_files:
@@ -155,7 +155,7 @@ apache:
         - proxy_fcgi
         - rewrite
     vhosts:
-        av_29rgglqt6gc1:
+        av_ktypxrpu5tge:
             servername: code-snippets.apache2.dev
             serveraliases:
                 - www.code-snippets.apache2.dev
@@ -172,7 +172,7 @@ apache:
             ssl_protocol: ''
             ssl_cipher: ''
             directories:
-                avd_7mgo1kby65c0:
+                avd_siccbvl9dhus:
                     path: /var/www/code-snippets
                     options:
                         - Indexes
@@ -184,7 +184,7 @@ apache:
                         - 'all granted'
                     custom_fragment: ''
                     files_match:
-                        avdfm_t0fe3iwsmjuy:
+                        avdfm_32xp87yjsg2h:
                             path: \.php$
                             sethandler: 'proxy:fcgi://127.0.0.1:9000'
                             custom_fragment: ''
@@ -215,7 +215,7 @@ php:
     fpm_ini:
         error_log: /var/log/php-fpm.log
     fpm_pools:
-        phpfp_5i2eo1tmc58q:
+        phpfp_s6k38qvydzrt:
             ini:
                 listen: '127.0.0.1:9000'
                 security.limit_extensions: .php
@@ -266,7 +266,7 @@ drush:
 ruby:
     install: '1'
     versions:
-        rv_qkfyd1mq5t1r:
+        rv_r5uor6koqpu9:
             default: '1'
             bundler: '1'
             version: 1.9.3
@@ -296,27 +296,27 @@ mysql:
         override_options: {  }
     adminer: 0
     users:
-        mysqlnu_n7spjdy2e5dd:
+        mysqlnu_tfoe2pja2cje:
             name: cs_dbu
-            password: cs
-        mysqlnu_lhaqay2ukr33:
+            password: csnippet
+        mysqlnu_n9qvy024d9ki:
             name: testdb
             password: testdb
     databases:
-        mysqlnd_1abenah650gc:
-            name: cs_dev
+        mysqlnd_0o1qtilgb0hz:
+            name: csdb
             sql: ''
-        mysqlnd_aoe7flqmkii9:
+        mysqlnd_xyy06ejp7ctk:
             name: testdb
             sql: ''
     grants:
-        mysqlng_lxq595l712tu:
+        mysqlng_2rp1bs1fktp4:
             user: cs_dbu
             table: 'cs_dev.*'
             privileges:
                 - ALL
-        mysqlng_c4yhiic0pg3l:
-            user: testdb
+        mysqlng_xt4hrjzecnv9:
+            user: testdbu
             table: 'testdb.*'
             privileges:
                 - ALL
@@ -328,15 +328,15 @@ mariadb:
         override_options: {  }
     adminer: 0
     users:
-        mariadbnu_nj2e4pr3wzol:
+        mariadbnu_8i2bf81ojk88:
             name: dbuser
             password: '123'
     databases:
-        mariadbnd_se6592avzrnq:
+        mariadbnd_pb7pzatxx0he:
             name: dbname
             sql: ''
     grants:
-        mariadbng_sy6g5k3ytzva:
+        mariadbng_rs60ce6nmz7e:
             user: dbuser
             table: '*.*'
             privileges:
@@ -354,12 +354,20 @@ postgresql:
     grants: {  }
     adminer: 0
 mongodb:
-    install: '0'
+    install: '1'
     settings:
         auth: 1
         bind_ip: 127.0.0.1
         port: '27017'
-    databases: {  }
+    databases:
+        mongodbnuad_otb1gmtfpgx7:
+            name: csdb
+            user: csdbu
+            password: csnippet
+        mongodbnuad_h9iqqk9uc63j:
+            name: testdb
+            user: testdbu
+            password: '123'
 redis:
     install: '0'
     settings:
