@@ -300,24 +300,24 @@ mysql:
             name: cs_dbu
             password: csnippet
         mysqlnu_n9qvy024d9ki:
-            name: testdb
-            password: testdb
+            name: cs_testdbu
+            password: '123'
     databases:
         mysqlnd_0o1qtilgb0hz:
-            name: csdb
+            name: cs_devdb
             sql: ''
         mysqlnd_xyy06ejp7ctk:
-            name: testdb
+            name: cs_testdb
             sql: ''
     grants:
         mysqlng_2rp1bs1fktp4:
             user: cs_dbu
-            table: 'cs_dev.*'
+            table: 'cs_devdb.*'
             privileges:
                 - ALL
         mysqlng_xt4hrjzecnv9:
-            user: testdbu
-            table: 'testdb.*'
+            user: cs_testdbu
+            table: 'cs_testdb.*'
             privileges:
                 - ALL
 mariadb:
@@ -361,12 +361,12 @@ mongodb:
         port: '27017'
     databases:
         mongodbnuad_otb1gmtfpgx7:
-            name: csdb
-            user: csdbu
+            name: cs_devdb
+            user: cs_dbu
             password: csnippet
         mongodbnuad_h9iqqk9uc63j:
-            name: testdb
-            user: testdbu
+            name: cs_testdb
+            user: cs_testdbu
             password: '123'
 redis:
     install: '0'
