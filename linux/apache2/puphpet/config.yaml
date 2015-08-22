@@ -73,6 +73,7 @@ server:
         - vim
         - htop
         - mc
+        - innotop
 users_groups:
     install: '1'
     groups:
@@ -155,7 +156,7 @@ apache:
         - proxy_fcgi
         - rewrite
     vhosts:
-        av_ktypxrpu5tge:
+        code_snippets:
             servername: code-snippets.apache2.dev
             serveraliases:
                 - www.code-snippets.apache2.dev
