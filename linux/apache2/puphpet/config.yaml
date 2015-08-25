@@ -73,7 +73,6 @@ server:
         - vim
         - htop
         - mc
-        - innotop
 users_groups:
     install: '1'
     groups:
