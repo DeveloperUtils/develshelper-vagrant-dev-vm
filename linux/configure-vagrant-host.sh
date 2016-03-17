@@ -11,7 +11,7 @@ SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
 PROJECT_NAME='code-snippets'
 declare -A VM_IPS
 VM_IPS[apache2]='192.168.56.170'
-VM_IPS[nginx]='192.168.56.201'
+VM_IPS[nginx]='192.168.56.171'
 
 function setup-hosts() {
     local PROJECT_CODENAME=$1
@@ -27,14 +27,14 @@ function setup-hosts() {
     local TMP=$(mktemp)
 
     if [[ ${#LINES[@]} -ge 2 ]]; then
-        cat "${FILE}" | head -n $(( BEGIN - 1 )) > "$TMP"
+        cat "${FILE}" | head -n $(( BEGIN - 1 )) > "${TMP}"
     else
-        cat "${FILE}" > "$TMP"
+        cat "${FILE}" > "${TMP}"
     fi
 
-    log INFO "writing temporary hosts file $TMP"
+    log INFO "writing temporary hosts file ${TMP}"
 
-    echo "${LINEMARKER}START###" >> "$TMP"
+    echo "${LINEMARKER}START###" >> "${TMP}"
 
     echo "${VM_IPS[nginx]}    ${PROJECT_CODENAME}.nginx.dev www.${PROJECT_CODENAME}.nginx.dev" >> "$TMP"
     echo "${VM_IPS[apache2]}    ${PROJECT_CODENAME}.apache2.dev www.${PROJECT_CODENAME}.apache2.dev" >> "$TMP"
@@ -42,10 +42,10 @@ function setup-hosts() {
     echo "${LINEMARKER}END###" >> "$TMP"
 
     if [[ ${#LINES[@]} -ge 2 ]]; then
-        cat "${FILE}" | tail -n +$(( END + 1 )) >> "$TMP"
+        cat "${FILE}" | tail -n +$(( END + 1 )) >> "${TMP}"
     fi
 
-    $DIFF_TOOL "$TMP" "$FILE"
+    ${DIFF_TOOL} "${TMP}" "${FILE}"
     local NOTSAME=$?
 
     if [[ ${NOTSAME} -gt 0 ]]; then
@@ -65,7 +65,7 @@ function setup-hosts() {
         log INFO "Already same version installed in ${FILE}. Nothing to do."
     fi
     log CLEANUP "Cleaning up temporary files"
-    rm -f "$TMP"
+    rm -f "${TMP}"
     log FINISHED
 }
 
