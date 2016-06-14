@@ -3,8 +3,8 @@ vagrantfile:
     vm:
         provider:
             local:
-                box: puphpet/ubuntu1404-x64
-                box_url: puphpet/ubuntu1404-x64
+                box: puphpet/debian75-x64
+                box_url: puphpet/debian75-x64
                 box_version: '0'
                 chosen_virtualizer: virtualbox
                 virtualizers:
@@ -19,15 +19,15 @@ vagrantfile:
                         check_guest_tools: 0
                         update_guest_tools: 0
                 machines:
-                    vflm_uzent0ra4ey4:
-                        id: codesnippet
+                    vflm_ioe2dw4gdrzx:
+                        id: develshelper
+                        hostname: develshelper.dev
                         network:
                             private_network: 192.168.56.171
                             forwarded_port:
-                                vflmnfp_8iz2w60qdoa4:
-                                    host: '7044'
+                                vflmnfp_qhkfhm5yt156:
+                                    host: '9534'
                                     guest: '22'
-                        hostname: code-snippets.local
                         memory: '512'
                         cpus: '1'
         provision:
@@ -38,9 +38,9 @@ vagrantfile:
                     - '--verbose'
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
         synced_folder:
-            vflsf_n5di7qg0uuk3:
+            vflsf_6jg9xd52mi04:
                 source: ./
-                target: /var/www/code-snippets
+                target: /var/www/develshelper
                 sync_type: nfs
                 smb:
                     smb_host: ''
@@ -82,7 +82,6 @@ vagrantfile:
         https: ''
         ftp: ''
         no_proxy: ''
-        enabled: ''
 server:
     install: '1'
     packages:
@@ -95,7 +94,7 @@ users_groups:
         - developer
     users:
         - 'developer:developer:www-data:vagrant'
-        - 'vagrant:vagrant:www-data'
+        - 'vagrant:vagrant:www-data:developer'
 locale:
     install: '1'
     settings:
@@ -123,11 +122,11 @@ nginx:
         names_hash_bucket_size: 128
     upstreams: {  }
     vhosts:
-        nxv_09f3ilo3ovos:
-            server_name: code-snipppets.nginx.dev
+        nxv_lsb3jgl7n7b6:
+            server_name: develshelper.nginx.dev
             server_aliases:
-                - www.code-snippets.nginx.dev
-            www_root: /var/www/code-snippets/web
+                - www.develshelper.nginx.dev
+            www_root: /var/www/develshelper/web
             listen_port: '80'
             index_files:
                 - index.html
@@ -143,23 +142,19 @@ nginx:
             rewrite_to_https: '1'
             spdy: '1'
             locations:
-                nxvl_qwzu9drnoojw:
+                nxvl_txhgzv03kklp:
                     location: /
-                    autoindex: 'off'
-                    internal: 'false'
                     try_files:
                         - $uri
                         - $uri/
                         - /index.php$is_args$args
-                    fastcgi: 'unix:/var/run/php5-fpm.sock'
+                    fastcgi: ''
                     fastcgi_index: ''
                     fastcgi_split_path: ''
                     proxy: ''
                     proxy_redirect: ''
-                nxvl_tx22852ow381:
+                nxvl_at9sm6lltu4o:
                     location: '~ \.php$'
-                    autoindex: 'off'
-                    internal: 'false'
                     try_files:
                         - $uri
                         - $uri/
@@ -189,7 +184,7 @@ apache:
         - proxy_fcgi
         - rewrite
     vhosts:
-        av_o0n822xla7zv:
+        av_ilhdv6md8adh:
             servername: awesome.dev
             serveraliases:
                 - www.awesome.dev
@@ -208,7 +203,7 @@ apache:
             ssl_protocol: ''
             ssl_cipher: ''
             directories:
-                avd_np593qtonlm7:
+                avd_9mw802ecrc5h:
                     path: /var/www/awesome
                     options:
                         - Indexes
@@ -220,16 +215,21 @@ apache:
                         - 'all granted'
                     custom_fragment: ''
                     files_match:
-                        avdfm_elzn11ojmds7:
+                        avdfm_wyiulgev8wj7:
                             path: \.php$
                             sethandler: 'proxy:fcgi://127.0.0.1:9000'
                             custom_fragment: ''
                             provider: filesmatch
                     provider: directory
+letsencrypt:
+    install: '1'
+    settings:
+        email: ''
+    domains: {  }
 php:
     install: '1'
     settings:
-        version: '56'
+        version: '55'
     modules:
         php:
             - cli
@@ -237,6 +237,8 @@ php:
             - fpm
             - mysql
             - readline
+            - curl
+            - sqlite
         pear: {  }
         pecl: {  }
     ini:
@@ -247,12 +249,12 @@ php:
     fpm_ini:
         error_log: /var/log/php-fpm.log
     fpm_pools:
-        phpfp_imoo8vau83lx:
+        phpfp_753apdfe0y3p:
             ini:
                 prefix: www
                 security.limit_extensions: .php
-                user: www-user
                 group: www-data
+                user: www-data
                 listen: /var/run/php5-fpm.sock
     composer: '1'
     composer_home: ''
@@ -286,11 +288,11 @@ wpcli:
     version: v0.21.1
 drush:
     install: '0'
-    version: 6.3.0
+    version: 8.0.5
 ruby:
     install: '1'
     versions:
-        rv_x68oyxqqo3t4:
+        rv_09o8x36yxa5p:
             default: '1'
             bundler: '1'
             version: 1.9.3
@@ -330,15 +332,15 @@ mariadb:
         override_options: {  }
     adminer: 0
     users:
-        mariadbnu_50v1tf0imscg:
+        mariadbnu_gcuctti31pks:
             name: dbuser
             password: '123'
     databases:
-        mariadbnd_lrr4po0eoh0t:
+        mariadbnd_0jldkhwfvpev:
             name: dbname
             sql: ''
     grants:
-        mariadbng_rktr17p2bsxf:
+        mariadbng_v5ecbqg26x6z:
             user: dbuser
             table: '*.*'
             privileges:
@@ -351,28 +353,28 @@ mysql:
         override_options: {  }
     adminer: 0
     users:
-        mysqlnu_886wg98rzmkt:
-            name: cs_dbu
-            password: csnippet
-        mysqlnu_hsg0fglnhvoq:
-            name: cs_testdbu
+        mysqlnu_fv5kewukm7za:
+            name: dh_dbu
+            password: devel
+        mysqlnu_tfxywlcvtvz4:
+            name: dh_testdbu
             password: '123'
     databases:
-        mysqlnd_k4qoxtszdkoe:
-            name: cs_devdb
+        mysqlnd_bdles6myoo7k:
+            name: dh_devdb
             sql: ''
-        mysqlnd_hfhhjka77339:
-            name: cs_testdb
+        mysqlnd_035vb9xjia4z:
+            name: dh_testdb
             sql: ''
     grants:
-        mysqlng_o7kj5x2hybzh:
-            user: cs_dbu
-            table: 'cs_devdb.*'
+        mysqlng_7nxv0stj58l6:
+            user: dh_dbu
+            table: 'dh_devdb.*'
             privileges:
                 - ALL
-        mysqlng_tb9vtm31x49q:
-            user: cs_testdbu
-            table: 'cs_testdb.*'
+        mysqlng_ejtbt0bcz6ot:
+            user: dh_testdbu
+            table: 'dh_testdb.*'
             privileges:
                 - ALL
 postgresql:
@@ -400,7 +402,7 @@ redis:
     settings:
         port: '6379'
 sqlite:
-    install: '0'
+    install: '1'
     adminer: 0
     databases: {  }
 mailhog:
@@ -432,10 +434,10 @@ rabbitmq:
 elastic_search:
     install: '0'
     settings:
-        version: 2.1.0
+        version: 2.3.1
         java_install: true
     instances:
-        esi_cu77ce5et39n:
+        esi_13yvkq6pldlw:
             name: es-01
 solr:
     install: '0'
