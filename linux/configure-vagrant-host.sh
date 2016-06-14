@@ -8,7 +8,7 @@ SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
 
 ### settings
 
-PROJECT_NAME='code-snippets'
+PROJECT_NAME='develshelper'
 declare -A VM_IPS
 VM_IPS[apache2]='192.168.56.170'
 VM_IPS[nginx]='192.168.56.171'
@@ -37,7 +37,7 @@ function setup-hosts() {
     echo "${LINEMARKER}START###" >> "${TMP}"
 
     echo "${VM_IPS[nginx]}    ${PROJECT_CODENAME}.nginx.dev www.${PROJECT_CODENAME}.nginx.dev" >> "$TMP"
-    echo "${VM_IPS[apache2]}    ${PROJECT_CODENAME}.apache2.dev www.${PROJECT_CODENAME}.apache2.dev" >> "$TMP"
+    echo "${VM_IPS[apache2]}    ${PROJECT_CODENAME}.apache.dev www.${PROJECT_CODENAME}.apache.dev" >> "$TMP"
 
     echo "${LINEMARKER}END###" >> "$TMP"
 
