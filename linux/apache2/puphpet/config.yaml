@@ -23,7 +23,7 @@ vagrantfile:
                         id: develshelper
                         hostname: develshelper.dev
                         network:
-                            private_network: 192.168.56.171
+                            private_network: 192.168.56.170
                             forwarded_port:
                                 vflmnfp_qhkfhm5yt156:
                                     host: '9534'
