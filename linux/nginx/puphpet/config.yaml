@@ -217,7 +217,7 @@ apache:
                     files_match:
                         avdfm_wyiulgev8wj7:
                             path: \.php$
-                            sethandler: 'proxy:fcgi://127.0.0.1:9000'
+                            sethandler: 'proxy:unix:/var/run/php5-fpm.sock|fcgi://localhost'
                             custom_fragment: ''
                             provider: filesmatch
                     provider: directory
