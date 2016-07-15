@@ -19,13 +19,13 @@ vagrantfile:
                         check_guest_tools: 0
                         update_guest_tools: 0
                 machines:
-                    vflm_ioe2dw4gdrzx:
+                    vflm_ulrtw2scfmsp:
                         id: develshelper
                         hostname: develshelper.dev
                         network:
                             private_network: 192.168.56.170
                             forwarded_port:
-                                vflmnfp_qhkfhm5yt156:
+                                vflmnfp_x2s3acv6zrlo:
                                     host: '9534'
                                     guest: '22'
                         memory: '512'
@@ -38,7 +38,7 @@ vagrantfile:
                     - '--verbose'
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
         synced_folder:
-            vflsf_6jg9xd52mi04:
+            vflsf_11r9punwiej7:
                 source: ./
                 target: /var/www/develshelper
                 sync_type: nfs
@@ -100,9 +100,9 @@ locale:
     settings:
         default_locale: en_US.UTF-8
         locales:
+            - de_DE.UTF-8
             - en_GB.UTF-8
             - en_US.UTF-8
-            - de_DE.UTF-8
         timezone: UTC
 firewall:
     install: '1'
@@ -122,7 +122,7 @@ nginx:
         names_hash_bucket_size: 128
     upstreams: {  }
     vhosts:
-        nxv_lsb3jgl7n7b6:
+        nxv_mywtt9x5sefm:
             server_name: develshelper.nginx.dev
             server_aliases:
                 - www.develshelper.nginx.dev
@@ -142,7 +142,7 @@ nginx:
             rewrite_to_https: '1'
             spdy: '1'
             locations:
-                nxvl_txhgzv03kklp:
+                nxvl_ag43wcje89dy:
                     location: /
                     try_files:
                         - $uri
@@ -153,7 +153,7 @@ nginx:
                     fastcgi_split_path: ''
                     proxy: ''
                     proxy_redirect: ''
-                nxvl_at9sm6lltu4o:
+                nxvl_5x664fmrk4r3:
                     location: '~ \.php$'
                     try_files:
                         - $uri
@@ -184,7 +184,7 @@ apache:
         - proxy_fcgi
         - rewrite
     vhosts:
-        av_ilhdv6md8adh:
+        av_jtsu0wc8wtrm:
             servername: develshelper.apache.dev
             serveraliases:
                 - www.develshelper.apache.dev
@@ -203,7 +203,7 @@ apache:
             ssl_protocol: ''
             ssl_cipher: ''
             directories:
-                avd_9mw802ecrc5h:
+                avd_ce0v05el60br:
                     path: /var/www/develshelper/web
                     options:
                         - Indexes
@@ -215,7 +215,7 @@ apache:
                         - 'all granted'
                     custom_fragment: ''
                     files_match:
-                        avdfm_wyiulgev8wj7:
+                        avdfm_790p0wfz0wch:
                             path: \.php$
                             sethandler: 'proxy:unix:/var/run/php5-fpm.sock|fcgi://localhost'
                             custom_fragment: ''
@@ -249,7 +249,7 @@ php:
     fpm_ini:
         error_log: /var/log/php-fpm.log
     fpm_pools:
-        phpfp_753apdfe0y3p:
+        phpfp_61vk1dro40j0:
             ini:
                 prefix: www
                 security.limit_extensions: .php
@@ -292,7 +292,7 @@ drush:
 ruby:
     install: '1'
     versions:
-        rv_09o8x36yxa5p:
+        rv_f38i4whvzdbu:
             default: '1'
             bundler: '1'
             version: 1.9.3
@@ -332,15 +332,15 @@ mariadb:
         override_options: {  }
     adminer: 0
     users:
-        mariadbnu_gcuctti31pks:
+        mariadbnu_4t32dfrfc98j:
             name: dbuser
             password: '123'
     databases:
-        mariadbnd_0jldkhwfvpev:
+        mariadbnd_iogwnhemq5fo:
             name: dbname
             sql: ''
     grants:
-        mariadbng_v5ecbqg26x6z:
+        mariadbng_s1iq7yvhbych:
             user: dbuser
             table: '*.*'
             privileges:
@@ -353,26 +353,26 @@ mysql:
         override_options: {  }
     adminer: 0
     users:
-        mysqlnu_fv5kewukm7za:
+        mysqlnu_6g3jjajcy6dx:
             name: dh_dbu
             password: devel
-        mysqlnu_tfxywlcvtvz4:
+        mysqlnu_8lmjzj5mu2ik:
             name: dh_testdbu
             password: '123'
     databases:
-        mysqlnd_bdles6myoo7k:
+        mysqlnd_niftztij3fsz:
             name: dh_devdb
             sql: ''
-        mysqlnd_035vb9xjia4z:
+        mysqlnd_wrk7yt4ay2wo:
             name: dh_testdb
             sql: ''
     grants:
-        mysqlng_7nxv0stj58l6:
+        mysqlng_o2v1mqpr2n4r:
             user: dh_dbu
             table: 'dh_devdb.*'
             privileges:
                 - ALL
-        mysqlng_ejtbt0bcz6ot:
+        mysqlng_ujem3laic19u:
             user: dh_testdbu
             table: 'dh_testdb.*'
             privileges:
@@ -437,7 +437,7 @@ elastic_search:
         version: 2.3.1
         java_install: true
     instances:
-        esi_13yvkq6pldlw:
+        esi_wl15phk7t3nd:
             name: es-01
 solr:
     install: '0'
